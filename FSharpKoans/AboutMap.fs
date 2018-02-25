@@ -48,7 +48,14 @@ module ``15: Applying a map to a list`` =
     [<Test>]
     let ``03 Specified-function mapping, the hard way`` () =
         let map (f : 'a -> 'b) (xs : 'a list) : 'b list =
-            __  // write a map which applies f to each element
+          let rec change (inlist: 'a list) (outlist: 'b list) =
+           match inlist with 
+           | [] -> List.rev outlist
+           | n::rest ->
+            let q = f n
+            change rest (q::outlist)
+          change xs [] 
+            // write a map which applies f to each element
         map (fun x -> x+1) [9;8;7] |> should equal [10;9;8]
         map ((*) 2) [9;8;7] |> should equal [18;16;14]
         map (fun x -> sprintf "%.2f wut?" x)  [9.3; 1.22] |> should equal ["9.30 wut?"; "1.22 wut?"]
@@ -56,6 +63,6 @@ module ``15: Applying a map to a list`` =
     // Hint: https://msdn.microsoft.com/en-us/library/ee370378.aspx
     [<Test>]
     let ``04 Specified-function mapping, the easy way`` () =
-        __ (fun x -> x+1) [9;8;7] |> should equal [10;9;8]
-        __ ((*) 2) [9;8;7] |> should equal [18;16;14]
-        __ (fun x -> sprintf "%.2f wut?" x)  [9.3; 1.22] |> should equal ["9.30 wut?"; "1.22 wut?"]
+        List.map (fun x -> x+1) [9;8;7] |> should equal [10;9;8]
+        List.map ((*) 2) [9;8;7] |> should equal [18;16;14]
+        List.map (fun x -> sprintf "%.2f wut?" x)  [9.3; 1.22] |> should equal ["9.30 wut?"; "1.22 wut?"]
