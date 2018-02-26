@@ -33,18 +33,18 @@ module ``18: Combining functions`` =
     let ``01 |>, the 'pipe' operator`` () =
         let add5 a = a + 5
         let double a = a * 2
-        3 |> add5 |> double |> should equal __  // <-- start with three, add 5, then double. Readable, isn't it?
-        3 |> double |> add5 |> should equal __
-        6 |> add5 |> add5 |> should equal __
-        8 |> double |> double |> add5 |> should equal __
+        3 |> add5 |> double |> should equal 16  // <-- start with three, add 5, then double. Readable, isn't it?
+        3 |> double |> add5 |> should equal 11
+        6 |> add5 |> add5 |> should equal 16
+        8 |> double |> double |> add5 |> should equal 37
 
     [<Test>]
     let ``02 The output type of one pipe must be the input type to the next`` () =
         let toString (x : int) = string x
         let toInt (x : float) = int x
-        toInt |> should be ofType<FILL_ME_IN>
-        toString |> should be ofType<FILL_ME_IN>
-        3.14 |> __ |> __ |> should equal "3"
+        toInt |> should be ofType<float->int>
+        toString |> should be ofType<int->string>
+        3.14 |> toInt |> toString |> should equal "3"
 
     (*
         The backwards-pipe operator takes:
