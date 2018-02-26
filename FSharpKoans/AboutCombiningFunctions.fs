@@ -65,7 +65,7 @@ module ``18: Combining functions`` =
         let a x =
             x = 4
         not (a 4) |> should equal false
-        (__ __ a 4) |> should equal false // <-- put <| in one of the spaces to fill in
+        (not <| a 4) |> should equal false // <-- put <| in one of the spaces to fill in
 
     (*
         The compose operator takes:
@@ -90,10 +90,10 @@ module ``18: Combining functions`` =
         let j = double >> add5
         let k = double >> double >> double
         let l = j >> i
-        i 3 |> should equal __
-        j 3 |> should equal __
-        k 3 |> should equal __
-        l 3 |> should equal __
+        i 3 |> should equal 16
+        j 3 |> should equal 11
+        k 3 |> should equal 24
+        l 3 |> should equal 32
 
     [<Test>]
     let ``05 >>, the compose operator, creates new functions by "joining" old ones`` () =
@@ -103,7 +103,7 @@ module ``18: Combining functions`` =
             | [] -> ["??"]
             | _ -> List.map string xs
         let appendEquals s = s + " = ??"
-        let f = __ // <-- This is a one-line answer which uses >>
+        let f = stringify >> joinTerms >> appendEquals // <-- This is a one-line answer which uses >>
         f [3;5;7;3] |> should equal "3 + 5 + 7 + 3 = ??"
         f [2;4;6] |> should equal "2 + 4 + 6 = ??"
         f [] |> should equal "?? = ??"
