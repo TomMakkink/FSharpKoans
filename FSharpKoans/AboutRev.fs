@@ -10,10 +10,10 @@ module ``14: Reversing a list`` =
     [<Test>]
     let ``01 Reversing a list, the hard way`` () =
         let rev (xs : 'a list) : 'a list =
-          let rec getlength revL out = 
-           match out with 
+          let rec getlength revL outList = 
+           match outList with 
            |[] -> revL
-           |n::rest -> getlength (n::revL) rest
+           |head::tail -> getlength (head::revL) tail
           getlength [] xs    // write a function to reverse a list here.
 
         rev [9;8;7] |> should equal [7;8;9]

@@ -12,7 +12,7 @@ module ``15: Applying a map to a list`` =
           let rec add inList outList =
            match inList with 
            | [] ->List.rev outList
-           | n::rest -> add rest (n+1::outList)
+           | head::tail -> add tail (head+1::outList)
           add xs [] 
             
             // write a function which adds 1 to each element
@@ -28,7 +28,7 @@ module ``15: Applying a map to a list`` =
           let rec add inList outList =
            match inList with 
            | [] ->List.rev outList
-           | n::rest -> add rest (n*2::outList)
+           | head::tail -> add tail (head*2::outList)
           add xs [] // write a function which doubles each element
         map [1; 2; 3; 4] |> should equal [2; 4; 6; 8]
         map [9; 8; 7; 6] |> should equal [18; 16; 14; 12]
@@ -51,9 +51,9 @@ module ``15: Applying a map to a list`` =
           let rec change (inlist: 'a list) (outlist: 'b list) =
            match inlist with 
            | [] -> List.rev outlist
-           | n::rest ->
-            let q = f n
-            change rest (q::outlist)
+           | head::tail ->
+            let q = f head
+            change tail (q::outlist)
           change xs [] 
             // write a map which applies f to each element
         map (fun x -> x+1) [9;8;7] |> should equal [10;9;8]

@@ -12,10 +12,10 @@ module ``16: Filtering a list`` =
            let rec change inList outList = 
             match inList with 
             | [] -> List.rev outList
-            | n::rest -> 
-              match n%2 with 
-              | 0 -> change rest outList
-              | _ -> change rest (n::outList)
+            | head::tail -> 
+              match head%2 with 
+              | 0 -> change tail outList
+              | _ -> change tail (head::outList)
            change xs []
            // write a function to filter for odd elements only.
         filter [1; 2; 3; 4] |> should equal [1; 3]
@@ -38,10 +38,10 @@ module ``16: Filtering a list`` =
            let rec fil (inList: 'a list) (outList: 'a list) =
             match inList with 
             | [] -> List.rev outList
-            | n::rest -> 
-             match f n with
-             | false -> fil rest outList
-             | true -> fil rest (n::outList)
+            | head::tail -> 
+             match f head with
+             | false -> fil tail outList
+             | true -> fil tail (head::outList)
            fil xs []
             // write a function which filters based on the specified criteria
         filter (fun x -> x > 19) [9; 5; 23; 66; 4] |> should equal [23; 66]

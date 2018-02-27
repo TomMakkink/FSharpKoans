@@ -38,7 +38,7 @@ module ``17: Welcome to the functional fold`` =
             let rec fold2 inList nextstate = 
              match inList with 
              | [] -> nextstate
-             | n::rest -> fold2 rest (nextstate+n) 
+             | head::tail -> fold2 tail (nextstate+head) 
             fold2 xs initialState 
               
             // write a function to do what's described above
@@ -51,7 +51,7 @@ module ``17: Welcome to the functional fold`` =
          let rec fold2 inList nextstate = 
              match inList with 
              | [] -> nextstate
-             | n::rest -> fold2 rest (nextstate*n) 
+             | head::tail -> fold2 tail (nextstate*head) 
          fold2 xs initialState 
              // write a function to multiply the elements of a list
         fold 1 [99] |> should equal 99
@@ -69,9 +69,9 @@ module ``17: Welcome to the functional fold`` =
             let rec fold2 (inList: 'b List) (nextState: 'a) = 
              match inList with 
              | [] -> nextState
-             | n::rest ->
-               let q = f nextState n
-               fold2 rest q
+             | head::tail ->
+               let q = f nextState head
+               fold2 tail q
             fold2 xs initialState
              // write a function to do a fold.
         fold (+) 0 [1;2;3;4] |> should equal 10

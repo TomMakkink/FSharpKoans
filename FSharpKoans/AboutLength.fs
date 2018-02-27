@@ -41,10 +41,10 @@ module ``13: Finding the length of a list`` =
     [<Test>]
     let ``01 Finding the length of a list, the hard way`` () =
         let length (xs : 'a list) : int =
-            let rec getlength xs out = 
-             match xs with 
-             |[] -> out
-             |_::rest -> getlength rest (out+1)
+            let rec getlength inList outList = 
+             match inList with 
+             |[] -> outList
+             |_::tail -> getlength tail (outList+1)
             getlength xs 0
              // write a function to find the length of a list
         length [9;8;7] |> should equal 3
