@@ -92,10 +92,10 @@ module ``21: Sequences and Arrays`` =
         let hailstone seed =
             Seq.unfold (fun state -> 
                 match state with 
-                | 0 -> None
-                | 1 -> Some(state,0)
+                | 0 -> None // returns nothing 
+                | 1 -> Some(state,0) // goes back into hailstone but with a 0 and so will return in the next iteration
                 | _ ->
-                    match state % 2 with 
+                    match state % 2 with  // this method will just allow us to (currentState, nextState) and it is the next state that gets fed back into the seq
                     | 0 -> Some(state, state / 2)
                     | 1 -> Some(state, (3*state) + 1)
             ) seed
@@ -121,12 +121,15 @@ module ``21: Sequences and Arrays`` =
                     yield! hailstone result // I'm giving back values taken from a sequence here
             }
         let rec puffery x =
-            seq {
+           seq {           
+                yield x // this places the input value into the seq
                 match String.length x with
-                | 0 -> None
-                | 1 -> yield x
-                | _ -> yield! puffery x.[..String.length x - 1]
-            }        
+                | 0 -> () // this is just incase 
+                | 1 -> () // this will allow us to exit and yield the seq once we have a string length of 1
+                | _ ->
+                    yield! puffery (x.[..String.length x - 2]) // this will allow us to recursivly go into puffery with a string length of 2 less than what we stated with.
+                    
+           }
         puffery "Whizz!" |> Seq.toList |> should equal ["Whizz!"; "Whizz"; "Whiz"; "Whi"; "Wh"; "W"]
         puffery "ZchelnIk" |> Seq.toList |> should equal ["ZchelnIk"; "ZchelnI"; "Zcheln"; "Zchel"; "Zche"; "Zch"; "Zc"; "Z"]
         puffery "T" |> Seq.toList |> should equal ["T"]

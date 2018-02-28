@@ -35,7 +35,7 @@ module ``08: Putting the Function into Functional Programming`` =
     let ``04 The input to a function is a pattern (Part 3).`` () =
         // remember our record types from AboutRecords.fs ?
         // when writing a record, all of the fields must be present
-        (fun { Author=k } -> "Author is " + k) {Title = "The Republic"; Author = "Plato"; Year = 1500} |> should equal "Author is Plato"
+        (fun { Author=k } -> "Author is " + k) {Title = "The Republic"; Author = "Plato"; Year = -200} |> should equal "Author is Plato"
 
     [<Test>]
     let ``05 A function can be bound to a name (Part 1).`` () =
