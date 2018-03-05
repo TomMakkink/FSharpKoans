@@ -53,7 +53,7 @@ module ``11: Parametric polymorphism`` =
 
     [<Test>]
     let ``02 Defining a generic function`` () =
-        let f x y = (x, y, y)
+        let f x y = x, y, y
         f 4 5 |> should equal (4, 5, 5)
         f "k" 'p' |> should equal ("k", 'p', 'p')
 
