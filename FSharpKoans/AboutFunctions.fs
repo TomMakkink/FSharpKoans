@@ -173,12 +173,12 @@ module ``08: Putting the Function into Functional Programming`` =
     [<Test>]
     let ``22 Using a value defined in an inner scope`` () =
         // this is very similar to the previous test.
-        let g t =
+        let g t x =
             let result =
                 match t%2 with
                 | 0 -> 10
                 | 1 -> 65
-            fun x -> result - x
+            result - x
         g 5 8 |> should equal 57
         g 8 5 |> should equal 5
         // PS. I hope this one brought you some closure.

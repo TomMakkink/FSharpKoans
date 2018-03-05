@@ -72,7 +72,7 @@ module ``07: Strings and Conversions`` =
 
     [<Test>]
     let ``09 String formatting: %s format specifier`` () =
-        let result = sprintf "%s %s" "Practice makes" "perfect."
+        let result = sprintf "%s" "Practice makes perfect."
         result |> should equal "Practice makes perfect."
 
     [<Test>]

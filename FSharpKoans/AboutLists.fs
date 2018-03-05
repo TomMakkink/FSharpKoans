@@ -70,7 +70,7 @@ module ``05: I Have Here In My Hand A List`` =
         // Below are our extra bullshit testings, to aid understanding 
         test |> should equal "apple"
         tail |> should equal ["peach"; "orange"; "watermelon"; "pineapple"; "tomato"]
-
+        
     [<Test>]
     let ``08 Pattern-matching a list (Part 4).`` () =
         let fruits = ["apple"; "peach"; "orange"; "watermelon"; "pineapple"; "tomato"]
