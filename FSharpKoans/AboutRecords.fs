@@ -44,8 +44,8 @@ module ``06: On the Record`` =
 
     [<Test>]
     let ``03 Decomposing with a record pattern`` () =
-        let book = { Title="Dune"; Author="Frank Herbert"; Year=1965 }
-        let {Title = myTitle; Author = myAuthor; Year = myYear} = book
+        let book = { Title="Dune";Author="Frank Herbert"; Year=1965 }
+        let {Title = myTitle; Year = myYear} = book
         // deconstructing book into seperate paterns ( elements )
         myTitle |> should equal "Dune" // DO NOT use a . symbol in your answer
         myYear |> should equal 1965 // DO NOT use a . symbol in your answer
